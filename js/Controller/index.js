@@ -1,7 +1,8 @@
 var arrNhanVien=[];
 
 document.getElementById("btnThemNV").onclick = function() {themNhanVien()};
-
+document.getElementById("btnCapNhat").onclick = function() {capNhatNhanVien()};
+document.getElementById("btnDong").onclick = function () {dongModal()}
 function themNhanVien() {
     var nhanVien = layGiaTriInput();
     console.log(nhanVien)
@@ -23,7 +24,9 @@ function xoaNhanVien(taiKhoan){
 }
 
 function suaNhanVien(taiKhoan){
-    // document.getElementById("btnCapNhatSV").style.display = "inline-block";
+    $('#myModal').modal('show');
+    myModal = document.getElementById("myModal")
+    alert('hello')
     var index = timViTriNhanVien(taiKhoan);
     var nhanVien = arrNhanVien[index];
     ganGiaTriChoInput(
@@ -37,4 +40,42 @@ function suaNhanVien(taiKhoan){
         nhanVien.gioLam
     );
     document.getElementById("tknv").readOnly = true;
+}
+
+function capNhatNhanVien() {
+    var nhanVienDaChinhSua = layGiaTriInput();
+    var index = timViTriNhanVien(nhanVienDaChinhSua.taiKhoan)
+    // var capNhatSinhVien = ganGiaTriChoInput(sinhVien2.maSV,"","","","","","","","")
+    console.log(index)
+    arrNhanVien[index] = nhanVienDaChinhSua;
+    console.log(arrNhanVien)
+    renderData()
+    ganGiaTriChoInput("","","","","","","","","");
+    document.getElementById("tknv").readOnly = false;
+    // console.log(capNhatSinhVien)
+    $('#myModal').modal('hide');
+}
+
+function search() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchName");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[6];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+    }
+}
+
+function dongModal() {
+    resetDisplay();
 }

@@ -8,6 +8,25 @@ function layGiaTriInput() {
     var chucVu = document.getElementById("chucvu").value * 1;
     var gioLam = document.getElementById("gioLam").value * 1;
 
+    var valid = true;
+    valid = kiemTraRong(taiKhoan,"tbTKNV")
+            &kiemTraRong(hoTen,"tbTen")
+            &kiemTraRong(email,"tbEmail")
+            &kiemTraRong(matKhau,"tbMatKhau")
+            &kiemTraRong(ngayLam,"tbNgay")
+            &kiemTraRong(luongCoBan,"tbLuongCB")
+            &kiemTraRong(chucVu,"tbChucVu")
+            &kiemTraRong(gioLam,"tbGiolam")
+            &kiemDoDai(taiKhoan,"tbTKNV")
+            &kiemTraTen(hoTen,"tbTen")
+            &kiemTraMatKhau(matKhau,"tbMatKhau")
+            &kiemTraLuong(luongCoBan,"tbLuongCB")
+            &kiemTraGioLam(gioLam,"tbGiolam")
+    //Ở đây kiểm tra biến valid nếu valid false thì sẽ return không chạy những đoạn lệnh bên dưới
+    if(!valid){
+        return;
+    }
+
     var nhanVien = new NhanVien(
         taiKhoan,
         hoTen,
@@ -53,7 +72,7 @@ function renderData() {
             <td>${xepLoai}</td>
             <td>
                 <button class="btn btn-danger" onclick="xoaNhanVien('${nhanVien.taiKhoan}')"><i class="fa-solid fa-trash-can"></i></button>
-                <button class="btn btn-warning" onclick="suaNhanVien('${nhanVien.taiKhoan}')"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-warning editBtn" onclick="suaNhanVien('${nhanVien.taiKhoan}')"><i class="fa-solid fa-pen-to-square"></i></button>
             </td>
         </tr>`
     }
@@ -71,3 +90,13 @@ function timViTriNhanVien(taiKhoan) {
     return viTri;
 }
 
+function resetDisplay(){
+    document.getElementById("tbTKNV").style.display ="none";
+    document.getElementById("tbTen").style.display ="none";
+    document.getElementById("tbEmail").style.display ="none";
+    document.getElementById("tbMatKhau").style.display ="none";
+    document.getElementById("tbNgay").style.display ="none";
+    document.getElementById("tbLuongCB").style.display ="none";
+    document.getElementById("tbChucVu").style.display ="none";
+    document.getElementById("tbGiolam").style.display ="none";
+}

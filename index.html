@@ -124,14 +124,14 @@
 						<div class="row mb-3">
 							<div class="col">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Loại nhân viên" id="searchName">
+									<input type="text" class="form-control" placeholder="Loại nhân viên" id="searchName" onkeyup="search()">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="btnTimNV"><i class="fa fa-search"></i></span>
 									</div>
 								</div>
 							</div>
 						</div>
-						<table class="table table-bordered table-hover myTable">
+						<table class="table table-bordered table-hover" id="myTable">
 							<thead class="text-primary">
 								<tr>
 									<th class="nowrap">
@@ -327,6 +327,8 @@
 	<script src="./js/Model/NhanVien.js"></script>
 	<script src="./js/Controller/index.js"></script>
 	<script src="./js/Controller/helper.js"></script>
+	<script src="./js/Controller/validatoion.js"></script>
+	
 </body>
 
 </html>
